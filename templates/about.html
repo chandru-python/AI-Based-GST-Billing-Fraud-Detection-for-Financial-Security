@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Our GST Fraud Detection System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #1a73e8;
+            --secondary-color: #34a853;
+            --accent-color: #fbbc04;
+            --warning-color: #ea4335;
+            --dark-color: #202124;
+            --light-color: #f8f9fa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, rgba(26, 115, 232, 0.05), rgba(52, 168, 83, 0.05)), 
+                        url("https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80");
+            background-size: cover;
+            background-attachment: fixed;
+            min-height: 100vh;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            margin-top: 50px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(26, 115, 232, 0.2);
+            width: 850px;
+            max-width: 95%;
+            border: 3px solid var(--primary-color);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        h2 {
+            font-size: 32px;
+            margin-bottom: 25px;
+            color: var(--primary-color);
+            text-align: center;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+            width: 100%;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 25%;
+            width: 50%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .feature-card {
+            background: #f0f7ff;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid var(--primary-color);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(26, 115, 232, 0.15);
+        }
+        
+        .feature-icon {
+            font-size: 24px;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .feature-card h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        
+        .feature-card p {
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 0;
+            color: #555;
+        }
+        
+        .system-overview {
+            background: #e8f5e9;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            border-left: 4px solid var(--secondary-color);
+        }
+        
+        .system-overview h3 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .system-overview p {
+            line-height: 1.6;
+            color: #555;
+        }
+        
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 25px;
+            background: linear-gradient(135deg, var(--primary-color), #0d47a1);
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 30px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+            box-shadow: 0 4px 10px rgba(26, 115, 232, 0.3);
+            gap: 8px;
+        }
+        
+        .btn-back:hover {
+            background: linear-gradient(135deg, #0d47a1, var(--primary-color));
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(26, 115, 232, 0.4);
+        }
+        
+        .center {
+            text-align: center;
+        }
+        
+        @media (max-width: 768px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 25px;
+                margin-top: 30px;
+            }
+            
+            h2 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>About GST Fraud Detection System</h2>
+        
+        <div class="system-overview">
+            <h3><i class="fas fa-info-circle"></i> System Overview</h3>
+            <p>Our GST Fraud Detection System utilizes advanced machine learning algorithms to identify suspicious transaction patterns and potential tax evasion activities. By analyzing various financial parameters, the system helps businesses and tax authorities maintain compliance with GST regulations and detect fraudulent activities early.</p>
+        </div>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-search-dollar"></i>
+                </div>
+                <h3>Transaction Analysis</h3>
+                <p>Our system uses sophisticated algorithms to detect suspicious transaction patterns and anomalies in GST filings, helping identify potential fraud indicators.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3>Trend Detection</h3>
+                <p>The system identifies emerging fraud patterns and tax evasion techniques across different industries, enabling proactive prevention measures.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-file-invoice-dollar"></i>
+                </div>
+                <h3>Invoice Verification</h3>
+                <p>Automated validation of GST invoices helps detect fake or duplicated billing practices, reducing revenue loss due to fraudulent claims.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-user-shield"></i>
+                </div>
+                <h3>Compliance Monitoring</h3>
+                <p>Continuous monitoring ensures businesses adhere to GST regulations, with alerts for unusual activities that may indicate non-compliance or fraud.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-database"></i>
+                </div>
+                <h3>Data Integrity</h3>
+                <p>The system maintains data integrity through secure storage and processing of financial information, ensuring reliable fraud detection outcomes.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <h3>AI-Powered Analysis</h3>
+                <p>Leveraging machine learning models, our system continuously improves its detection capabilities based on new patterns and fraud techniques.</p>
+            </div>
+        </div>
+        
+        <div class="center">
+            <a href="{{ url_for('index') }}" class="btn-back">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </a>
+        </div>
+    </div>
+</body>
+</html>

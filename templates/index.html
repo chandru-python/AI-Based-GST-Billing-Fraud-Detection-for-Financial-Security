@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GST Fraud Detection System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1a73e8;   /* Professional blue theme for GST/finance */
+            --secondary-color: #34a853;
+            --accent-color: #fbbc04;
+            --warning-color: #ea4335;
+            --dark-color: #202124;
+            --light-color: #f8f9fa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, rgba(26, 115, 232, 0.1), rgba(52, 168, 83, 0.1)), 
+                        url("https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            color: var(--dark-color);
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.88);
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Top Navigation Bar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            margin-bottom: 2rem;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 20px;
+            z-index: 100;
+            animation: slideDown 0.8s ease-in-out;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            margin-left: 2rem;
+        }
+
+        .nav-logo-icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-right: 1rem;
+        }
+
+        .nav-logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-right: 2rem;
+        }
+
+        .nav-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.7rem 1.5rem;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(26, 115, 232, 0.3);
+            border: 2px solid transparent;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(26, 115, 232, 0.4);
+            background: white;
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .nav-btn-secondary {
+            background: var(--secondary-color);
+            box-shadow: 0 2px 8px rgba(52, 168, 83, 0.3);
+        }
+
+        .nav-btn-secondary:hover {
+            box-shadow: 0 5px 15px rgba(52, 168, 83, 0.4);
+            color: var(--secondary-color);
+            border-color: var(--secondary-color);
+        }
+
+        .nav-btn-accent {
+            background: var(--accent-color);
+            box-shadow: 0 2px 8px rgba(251, 188, 4, 0.3);
+            color: var(--dark-color);
+        }
+
+        .nav-btn-accent:hover {
+            box-shadow: 0 5px 15px rgba(251, 188, 4, 0.4);
+            color: var(--dark-color);
+            border-color: var(--accent-color);
+        }
+
+        .nav-btn-warning {
+            background: var(--warning-color);
+            box-shadow: 0 2px 8px rgba(234, 67, 53, 0.3);
+        }
+
+        .nav-btn-warning:hover {
+            box-shadow: 0 5px 15px rgba(234, 67, 53, 0.4);
+            color: var(--warning-color);
+            border-color: var(--warning-color);
+        }
+
+        header {
+            text-align: center;
+            padding: 2rem 0;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .logo-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-right: 1rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .tagline {
+            font-size: 1.1rem;
+            color: var(--dark-color);
+            font-weight: 400;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin: 3rem 0;
+            animation: slideUp 1s ease-in-out;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            width: 250px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--dark-color);
+        }
+
+        .feature-desc {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .btn-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 3rem;
+            animation: slideUp 1s ease-in-out;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 2rem;
+            background: var(--primary-color);
+            color: rgb(255, 255, 255);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(26, 115, 232, 0.3);
+            min-width: 200px;
+            text-align: center;
+            border: 2px solid transparent;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(26, 115, 232, 0.4);
+            background: rgb(255, 255, 255);
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .btn-secondary {
+            background: var(--secondary-color);
+            box-shadow: 0 4px 15px rgba(52, 168, 83, 0.3);
+        }
+
+        .btn-secondary:hover {
+            box-shadow: 0 8px 20px rgba(52, 168, 83, 0.4);
+            color: var(--secondary-color);
+            border-color: var(--secondary-color);
+        }
+
+        .btn-accent {
+            background: var(--accent-color);
+            box-shadow: 0 4px 15px rgba(251, 188, 4, 0.3);
+            color: var(--dark-color);
+        }
+
+        .btn-accent:hover {
+            box-shadow: 0 8px 20px rgba(251, 188, 4, 0.4);
+            color: var(--dark-color);
+            border-color: var(--accent-color);
+        }
+
+        .btn-warning {
+            background: var(--warning-color);
+            box-shadow: 0 4px 15px rgba(234, 67, 53, 0.3);
+        }
+
+        .btn-warning:hover {
+            box-shadow: 0 8px 20px rgba(234, 67, 53, 0.4);
+            color: var(--warning-color);
+            border-color: var(--warning-color);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        footer {
+            text-align: center;
+            margin-top: auto;
+            padding: 2rem 0;
+            color: var(--dark-color);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .btn { padding: 0.8rem 1.5rem; min-width: 160px; font-size: 1rem; }
+            .features { gap: 1rem; }
+            .feature-card { width: 100%; max-width: 300px; }
+            
+            .navbar {
+                flex-direction: column;
+                padding: 1rem;
+            }
+            
+            .nav-logo {
+                margin-left: 0;
+                margin-bottom: 1rem;
+            }
+            
+            .nav-buttons {
+                margin-right: 0;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .nav-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Top Navigation Bar -->
+        <nav class="navbar">
+            <div class="nav-logo">
+                <div class="nav-logo-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="nav-logo-text">GST Fraud Detection</div>
+            </div>
+            <div class="nav-buttons">
+                <a href="{{ url_for('login') }}" class="nav-btn">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </a>
+                <a href="{{ url_for('register') }}" class="nav-btn nav-btn-secondary">
+                    <i class="fas fa-user-plus"></i> Register
+                </a>
+                <a href="{{ url_for('about') }}" class="nav-btn nav-btn-accent">
+                    <i class="fas fa-info-circle"></i> About
+                </a>
+                <a href="{{ url_for('predict') }}" class="nav-btn nav-btn-warning">
+                    <i class="fas fa-chart-bar"></i> Analyze Data
+                </a>
+            </div>
+        </nav>
+
+        <header>
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h1>GST Fraud Detection</h1>
+            </div>
+            <p class="tagline">An AI-powered system for detecting fraudulent GST transactions, identifying tax evasion patterns, and ensuring compliance with tax regulations. Protect your business and contribute to a fair tax ecosystem.</p>
+        </header>
+
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-search-dollar"></i>
+                </div>
+                <h3 class="feature-title">Transaction Analysis</h3>
+                <p class="feature-desc">Advanced algorithms to detect suspicious transaction patterns and anomalies.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3 class="feature-title">Trend Detection</h3>
+                <p class="feature-desc">Identify emerging fraud patterns and tax evasion techniques across industries.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-file-invoice-dollar"></i>
+                </div>
+                <h3 class="feature-title">Invoice Verification</h3>
+                <p class="feature-desc">Validate GST invoices and detect fake or duplicated billing practices.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-user-shield"></i>
+                </div>
+                <h3 class="feature-title">Compliance Monitoring</h3>
+                <p class="feature-desc">Continuous monitoring to ensure businesses adhere to GST regulations.</p>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2025 GST Fraud Detection System | Promoting Tax Compliance</p>
+        </footer>
+    </div>
+</body>
+</html>
